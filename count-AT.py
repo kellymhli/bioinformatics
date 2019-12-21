@@ -1,14 +1,30 @@
+"""
+This program computes the AT content of a user entered DNA sequence.
+
+>>> at_content("AA")
+1.0
+
+>>> at_content("AGGTTC")
+0.5
+
+>>> at_content("GACC")
+0.25
+
+"""
 def at_content(dna):
-    dna_upper = dna.upper()
-    num_A = dna_upper.count("A")
-    num_T = dna_upper.count("T")
-    return ((num_A + num_T)/ len(dna_upper))
+    num_A = dna.count("A")
+    num_T = dna.count("T")
+    return ((num_A + num_T)/ len(dna))
+
 
 if __name__ == "__main__":
-    dna = input("Enter a DNA sequence: ")
-    while dna != "q" and dna != "Q":
-        print(dna)
+
+    import doctest
+    if doctest.testmod().failed == 0:
+        pass
+
+    dna = input("Enter a DNA sequence: ").upper()
+    while dna != "Q":
         at = at_content(dna)
-        print (f"AT content = {at:0.3f}")
-        dna = input("Enter another DNA sequence (or Q to quit): ")
-    
+        print (f"AT content of '{dna}' = {at:0.3f}")
+        dna = input("Enter another DNA sequence (or Q to quit): ").upper()
